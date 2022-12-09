@@ -17,10 +17,10 @@ data class Flight(
     val fare: BigDecimal,
     val departureAirportCode: String,
     val destinationAirportCode: String,
-    val departureDate: String,
-    val arrivalDate: String
+    val departureDate: LocalDate,
+    val arrivalDate: LocalDate
 )
 
 enum class Supplier {
-    CrazyAir,
+    CrazyAir, ToughJet
 }

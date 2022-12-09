@@ -1,26 +1,27 @@
 package com.example.demosb.suppliers.crazyair
 
 import assertk.assertThat
-import assertk.assertions.*
+import assertk.assertions.contains
+import assertk.assertions.hasSize
+import assertk.assertions.isEqualTo
 import com.example.demosb.errors.ApiException
-import com.example.demosb.suppliers.Flight
 import com.example.demosb.suppliers.GetFlightsParameters
+import com.example.demosb.testutils.div
+import com.example.demosb.testutils.readResource
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import org.assertj.core.groups.Tuple
 import org.junit.Before
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.time.LocalDate
+import java.time.Month.DECEMBER
+import java.time.Month.NOVEMBER
 import kotlin.streams.toList
 
 
 internal class CrazyAirApiTest {
-
     private val webServer: MockWebServer = MockWebServer()
-
 
     @Before
     fun init(): Unit {
@@ -84,19 +85,23 @@ internal class CrazyAirApiTest {
 
         // then
         assertThat(flights).hasSize(2)
-        assertThat(flights)
-            .extracting(Flight::fare, Flight::destinationAirportCode)
-            .containsExactlyInAnyOrder(
-                "0.99".toBigDecimal() to "STN",
-                "1.99".toBigDecimal() to "JFK"
-            )
+
+        val flight1 = flights.single { it.airline == "AirlineName1" }
+        assertThat(flight1::departureDate).isEqualTo(3 / DECEMBER / 2011)
+        assertThat(flight1::arrivalDate).isEqualTo(4 / DECEMBER / 2011)
+        assertThat(flight1::fare).isEqualTo("0.99".toBigDecimal())
+        assertThat(flight1::departureAirportCode).isEqualTo("LHR")
+        assertThat(flight1::destinationAirportCode).isEqualTo("STN")
+
+        val flight2 = flights.single { it.airline == "AirlineName2" }
+        assertThat(flight2::departureDate).isEqualTo(3 / NOVEMBER / 2011)
+        assertThat(flight2::arrivalDate).isEqualTo(3 / NOVEMBER / 2011)
+        assertThat(flight2::fare).isEqualTo("1.99".toBigDecimal())
+        assertThat(flight2::departureAirportCode).isEqualTo("LHR")
+        assertThat(flight2::destinationAirportCode).isEqualTo("JFK")
     }
 
     companion object {
-        private val happyResponse =
-            CrazyAirApi::class.java.classLoader.getResourceAsStream("good-crazyair-response.json")
-                .bufferedReader()
-                .readText()
-
+        private val happyResponse = readResource("good-crazyair-response.json")
     }
 }

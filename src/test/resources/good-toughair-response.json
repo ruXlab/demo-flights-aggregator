@@ -1,0 +1,23 @@
+[
+  {
+    "carrier": "TriAir",
+    "basePrice": 13.37,
+    "tax": 20.0,
+    "discount": 30,
+    "departureAirportName": "ABC",
+    "arrivalAirportName": "DEF",
+    "outboundDateTime": "2014-09-21T08:05:23.653Z",
+    "inboundDateTime": "2014-09-22T12:30:00.000Z"
+  },
+  {
+    "carrier": "BeAir",
+    "basePrice": 13.37,
+    "tax": 20.0,
+    "discount": 10,
+    "departureAirportName": "ONE",
+    "arrivalAirportName": "TWO",
+    "outboundDateTime": "2014-09-02T08:05:23.653Z",
+    "inboundDateTime": "2014-09-02T12:30:00.000Z"
+  }
+]
+

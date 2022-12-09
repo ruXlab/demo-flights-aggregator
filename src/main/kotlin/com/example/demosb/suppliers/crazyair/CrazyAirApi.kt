@@ -23,6 +23,11 @@ import java.util.stream.Stream
 import java.util.stream.StreamSupport
 import kotlin.collections.ArrayList
 
+/**
+ * This is a crazy simple flights provider
+ * It was initially codded during the pairing session so I'm not touching it,
+ * although it could be good candidate for the generalisation
+ */
 @Service
 class CrazyAirApi(
     private val jackson: ObjectMapper,

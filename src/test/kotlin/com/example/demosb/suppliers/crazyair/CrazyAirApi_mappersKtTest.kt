@@ -1,8 +1,8 @@
-package com.example.demosb.suppliers
+package com.example.demosb.suppliers.crazyair
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import com.example.demosb.suppliers.crazyair.toCrazyAirRequest
+import com.example.demosb.suppliers.GetFlightsParameters
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
 

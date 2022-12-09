@@ -1,12 +1,12 @@
 [
   {
-    "airline": "AirlineName",
+    "airline": "AirlineName1",
     "price": 0.99,
     "cabinclass": "E",
     "departureAirportCode": "LHR",
     "destinationAirportCode": "STN",
-    "departureDate": "2011-12-03T10:15:30",
-    "arrivalDate": "2011-12-03T11:15:30"
+    "departureDate": "2011-12-03",
+    "arrivalDate": "2011-12-04"
   },
   {
     "airline": "AirlineName2",
@@ -14,7 +14,7 @@
     "cabinclass": "B",
     "departureAirportCode": "LHR",
     "destinationAirportCode": "JFK",
-    "departureDate": "2011-11-03T10:15:30",
-    "arrivalDate": "2011-11-03T11:15:30"
+    "departureDate": "2011-11-03",
+    "arrivalDate": "2011-11-03"
   }
 ]
