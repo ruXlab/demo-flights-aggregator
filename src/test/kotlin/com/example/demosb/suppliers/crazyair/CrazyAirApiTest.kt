@@ -15,26 +15,27 @@ import org.junit.Before
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.Month.DECEMBER
 import java.time.Month.NOVEMBER
 import kotlin.streams.toList
+import java.time.LocalTime.parse as parseTime
 
 
 internal class CrazyAirApiTest {
     private val webServer: MockWebServer = MockWebServer()
 
     @Before
-    fun init(): Unit {
+    fun init() {
         webServer.start()
     }
 
     @Test
     fun `test bad response`() {
         // given
-        val mockResponse = MockResponse().apply {
+        webServer.enqueue(MockResponse().apply {
             setBody("nonsense")
-        }
-        webServer.enqueue(mockResponse)
+        })
 
         val api = CrazyAirApi(
             jacksonObjectMapper().findAndRegisterModules(),
@@ -59,7 +60,7 @@ internal class CrazyAirApiTest {
     }
 
     @Test
-    fun `happy path works`() {
+    fun `CrazyAirApi can process valid response`() {
         // given
         val mockResponse = MockResponse().apply {
             setBody(happyResponse)
@@ -87,15 +88,15 @@ internal class CrazyAirApiTest {
         assertThat(flights).hasSize(2)
 
         val flight1 = flights.single { it.airline == "AirlineName1" }
-        assertThat(flight1::departureDate).isEqualTo(3 / DECEMBER / 2011)
-        assertThat(flight1::arrivalDate).isEqualTo(4 / DECEMBER / 2011)
+        assertThat(flight1::departureDate).isEqualTo(LocalDateTime.of(3 / DECEMBER / 2011, parseTime("20:20:00")))
+        assertThat(flight1::arrivalDate).isEqualTo(LocalDateTime.of(4 / DECEMBER / 2011, parseTime("04:20:00")))
         assertThat(flight1::fare).isEqualTo("0.99".toBigDecimal())
         assertThat(flight1::departureAirportCode).isEqualTo("LHR")
         assertThat(flight1::destinationAirportCode).isEqualTo("STN")
 
         val flight2 = flights.single { it.airline == "AirlineName2" }
-        assertThat(flight2::departureDate).isEqualTo(3 / NOVEMBER / 2011)
-        assertThat(flight2::arrivalDate).isEqualTo(3 / NOVEMBER / 2011)
+        assertThat(flight2::departureDate).isEqualTo(LocalDateTime.of(3 / NOVEMBER / 2011, parseTime("10:15:30")))
+        assertThat(flight2::arrivalDate).isEqualTo(LocalDateTime.of(3 / NOVEMBER / 2011, parseTime("15:10:00")))
         assertThat(flight2::fare).isEqualTo("1.99".toBigDecimal())
         assertThat(flight2::departureAirportCode).isEqualTo("LHR")
         assertThat(flight2::destinationAirportCode).isEqualTo("JFK")

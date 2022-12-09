@@ -4,7 +4,9 @@ import com.example.demosb.aggregator.FlightsAggregator
 import com.example.demosb.suppliers.crazyair.CrazyAirApi
 import com.example.demosb.suppliers.toughjet.ToughJetApi
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 
+@Configuration
 class ApplicationConfig {
     @Bean
     fun provideFlightsAggregator(

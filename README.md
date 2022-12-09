@@ -1,8 +1,21 @@
 
+# Flights Aggregator API
+
+Demo project featuring kotlin and spring boot
+
+### How to run it?
+
+Although it's _possible_ to run service it's pretty useless on it's own using `./gradlew bootRun` - there are no real
+flights providers are available. So it's the best to run all tests (that includes e2e test for the API) using
+`./gradlew test`, or use IntelliJ Idea's "All Test" launcher.
+
+The original task was [posted here](https://github.com/barbradi/deblock-exercise)
+
 ## Assumptions
 
 * It's still a toy exercise
 * ToughAir response `tax` field is a percentage, same as `discount`. For instance, "49" (=0.49)
+* There is **no validation** of the responses from the suppliers, in the toy project we assume they are ideal and ever fail.
 
 ## Design choices
      

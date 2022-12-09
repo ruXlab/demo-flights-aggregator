@@ -2,6 +2,7 @@ package com.example.demosb.suppliers
 
 import java.math.BigDecimal
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 data class GetFlightsParameters(
     val origin: String,
@@ -17,8 +18,8 @@ data class Flight(
     val fare: BigDecimal,
     val departureAirportCode: String,
     val destinationAirportCode: String,
-    val departureDate: LocalDate,
-    val arrivalDate: LocalDate
+    val departureDate: LocalDateTime,
+    val arrivalDate: LocalDateTime
 )
 
 enum class Supplier {

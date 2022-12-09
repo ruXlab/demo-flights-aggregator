@@ -2,9 +2,9 @@ package com.example.demosb.suppliers.toughjet
 
 import com.example.demosb.suppliers.Flight
 import com.example.demosb.suppliers.GetFlightsParameters
+import com.example.demosb.suppliers.generic.GenericHttpPostSupplier
 import com.example.demosb.suppliers.toughjet.ToughJetApi.ToughJetRequest
 import com.example.demosb.suppliers.toughjet.ToughJetApi.ToughJetResponse
-import com.example.demosb.suppliers.generic.GenericHttpPostSupplier
 import com.fasterxml.jackson.databind.ObjectMapper
 import okhttp3.OkHttpClient
 import org.springframework.beans.factory.annotation.Value
@@ -14,7 +14,7 @@ import java.math.BigDecimal
 @Service
 class ToughJetApi(
     jackson: ObjectMapper,
-    @Value("\$flightsproviders.toughjet.url")
+    @Value("\${flightsproviders.toughjet.url}")
     url: String,
     okHttp: OkHttpClient = OkHttpClient.Builder().build()
 ): GenericHttpPostSupplier<ToughJetRequest, ToughJetResponse>(

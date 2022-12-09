@@ -4,7 +4,6 @@ import com.example.demosb.errors.ApiException
 import com.example.demosb.suppliers.Flight
 import com.example.demosb.suppliers.GetFlightsParameters
 import com.example.demosb.suppliers.IFlightsSupplier
-import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.core.JsonParseException
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
@@ -20,8 +19,6 @@ import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.*
 import java.util.stream.Stream
-import java.util.stream.StreamSupport
-import kotlin.collections.ArrayList
 
 /**
  * This is a crazy simple flights provider
@@ -31,7 +28,7 @@ import kotlin.collections.ArrayList
 @Service
 class CrazyAirApi(
     private val jackson: ObjectMapper,
-    @Value("\$flightsproviders.crazyair.url")
+    @Value("\${flightsproviders.crazyair.url}")
     private val url: String,
     private val okHttp: OkHttpClient = OkHttpClient.Builder().build()
 ) : IFlightsSupplier {

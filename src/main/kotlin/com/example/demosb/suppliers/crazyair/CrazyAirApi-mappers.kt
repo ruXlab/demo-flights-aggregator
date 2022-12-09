@@ -4,9 +4,8 @@ import com.example.demosb.suppliers.Flight
 import com.example.demosb.suppliers.GetFlightsParameters
 import com.example.demosb.suppliers.Supplier.CrazyAir
 import com.example.demosb.suppliers.crazyair.CrazyAirApi.CrazyAirApiRequest
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeFormatter.ISO_LOCAL_DATE
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME
 
 fun GetFlightsParameters.toCrazyAirRequest(): CrazyAirApiRequest {
     return CrazyAirApiRequest(
@@ -22,9 +21,9 @@ fun GetFlightsParameters.toCrazyAirRequest(): CrazyAirApiRequest {
 fun CrazyAirApi.CrazyAirApiResponse.toData(): Flight {
     return Flight(
         departureAirportCode = this.departureAirportCode,
-        departureDate = LocalDate.parse(this.departureDate, ISO_LOCAL_DATE),
+        departureDate = LocalDateTime.parse(this.departureDate, ISO_LOCAL_DATE_TIME),
         airline = this.airline,
-        arrivalDate = LocalDate.parse(this.arrivalDate, ISO_LOCAL_DATE),
+        arrivalDate = LocalDateTime.parse(this.arrivalDate, ISO_LOCAL_DATE_TIME),
         fare = this.price,
         supplier = CrazyAir,
         destinationAirportCode = this.destinationAirportCode

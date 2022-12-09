@@ -6,7 +6,7 @@
     "discount": 30,
     "departureAirportName": "ABC",
     "arrivalAirportName": "DEF",
-    "outboundDateTime": "2014-09-21T08:05:23.653Z",
+    "outboundDateTime": "2014-09-21T08:05:00.000Z",
     "inboundDateTime": "2014-09-22T12:30:00.000Z"
   },
   {
@@ -16,7 +16,7 @@
     "discount": 10,
     "departureAirportName": "ONE",
     "arrivalAirportName": "TWO",
-    "outboundDateTime": "2014-09-02T08:05:23.653Z",
+    "outboundDateTime": "2014-09-02T08:05:00.000Z",
     "inboundDateTime": "2014-09-02T12:30:00.000Z"
   }
 ]
