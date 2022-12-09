@@ -55,4 +55,11 @@ although it could be good candidate for the generalisation using `GenericSupplie
 For the sake of demo there are number of unit, integration and e2e have been implemented.
 Also, introduced some test helpers with kotlin DSL for the human-readable
 dates formatting (like `fn(04 / MAY / 1984)`)
+                                                     
+The unit tests, integration and e2e tests are included.
+                                                          
+### Error handing
 
+As it was discussed and implemented during the live pairing session
+the `@ControllerAdvice` is a great way to handle errors globally on the application 
+level, although it can't and shouldn't be a substitute for the all error handling.
